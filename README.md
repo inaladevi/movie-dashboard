@@ -47,5 +47,5 @@ The dashboard displays curated movie sections with smooth horizontal scrolling a
 
 ## Preview
 
-![NETFLEX Dashboard Preview](preview.png)
+![NETFLEX Dashboard Preview](assets/preview.png)
 
