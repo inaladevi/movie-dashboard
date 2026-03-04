@@ -7,7 +7,7 @@ The dashboard displays curated movie sections with smooth horizontal scrolling a
 
 ## Live Demo
 
-[View on GitHub Pages](https://inaladevi.github.io/admin-dashboard/)
+[View on GitHub Pages](https://inaladevi.github.io/movie-dashboard/)
 
 ## Features
 
