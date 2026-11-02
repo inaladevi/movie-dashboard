@@ -6,7 +6,7 @@ async function fetchMovies(endpoint, containerId) {
   try {
     const res = await fetch(`${BASE_URL}${endpoint}?api_key=${API_KEY}`);
     const data = await res.json();
-    displayMovies(data.results, containerId);
+    displayMovies(data.results || [], containerId);
   } catch (error) {
     console.error("Error fetching movies:", error);
   }
@@ -15,11 +15,11 @@ async function fetchMovies(endpoint, containerId) {
 async function searchMovies(query) {
   try {
     const res = await fetch(
-      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`
     );
     const data = await res.json();
 
-    displayMovies(data.results, "main-movies");
+    displayMovies(data.results || [], "main-movies");
 
     document.getElementById("main-title").textContent = "Search Results";
 
@@ -60,7 +60,7 @@ function openModal(movie) {
   document.getElementById("modal-img").src = IMG_URL + movie.poster_path;
   document.getElementById("modal-title").textContent = movie.title;
   document.getElementById("modal-rating").textContent =
-    `⭐ ${movie.vote_average}`;
+    `⭐ ${movie.vote_average.toFixed(1)}`;
   document.getElementById("modal-overview").textContent = movie.overview;
 }
 
@@ -105,10 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchMovies("/trending/movie/week", "main-movies");
   fetchMovies("/movie/popular", "popular");
   fetchMovies("/movie/top_rated", "top-rated");
-
-  document.getElementById("close-btn").addEventListener("click", () => {
-    document.getElementById("movie-modal").classList.add("hidden");
-  });
 
   initSliders();
   initSearch();
